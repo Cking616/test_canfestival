@@ -1,0 +1,1069 @@
+******************************************************************************
+                  TI ARM Linker PC v16.9.6                     
+******************************************************************************
+>> Linked Tue May 22 11:11:02 2018
+
+OUTPUT FILE NAME:   <test_canfestival.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00003075
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00020000  00004476  0001bb8a  R  X
+  SRAM                  20000000   00008000  00000ec0  00007140  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00004478   00004478    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    00003a46   00003a46    r-x .text
+  00003cb4    00003cb4    0000049c   0000049c    r-- .const
+  00004150    00004150    00000328   00000328    r-- .cinit
+20000000    20000000    00000ec0   00000000    rw-
+  20000000    20000000    0000026c   00000000    rw- .vtable
+  2000026c    2000026c    00000a28   00000000    rw- .data
+  20000c94    20000c94    00000200   00000000    rw- .stack
+  20000e94    20000e94    0000002c   00000000    rw- .bss
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     startup_ccs.obj (.intvecs)
+
+.text      0    0000026c    00003a46     
+                  0000026c    0000030c     uartstdio.obj (.text:UARTvprintf)
+                  00000578    0000027c     drv8308.obj (.text:drv8308_init)
+                  000007f4    00000270     TestSlave.obj (.text:TestSlave_scanIndexOD)
+                  00000a64    00000248     states.obj (.text:setNodeId)
+                  00000cac    0000020e     pdo.obj (.text:_sendPDOevent)
+                  00000eba    00000002     startup_ccs.obj (.text:FaultISR)
+                  00000ebc    000001d8     driver.obj (.text:driver_init_hardware)
+                  00001094    000001d4     sdo.obj (.text:initSDOline)
+                  00001268    000001d0     sysctl.obj (.text:SysCtlClockGet)
+                  00001438    00000190     objacces.obj (.text:_getODentry)
+                  000015c8    0000018c     pdo.obj (.text:sendOnePDOevent)
+                  00001754    0000017c     states.obj (.text:switchCommunicationState)
+                  000018d0    00000146     pdo.obj (.text:buildPDO)
+                  00001a16    00000138     pdo.obj (.text:CopyBits)
+                  00001b4e    00000002     startup_ccs.obj (.text:IntDefaultHandler)
+                  00001b50    00000138     sdo.obj (.text:SDOTimeoutAlarm)
+                  00001c88    00000132     driverlib.lib : gpio.obj (.text:GPIOPadConfigSet)
+                  00001dba    00000002     startup_ccs.obj (.text:NmiSR)
+                  00001dbc    00000124     states.obj (.text:setState)
+                  00001ee0    0000011c     timer.obj (.text:TimeDispatch)
+                  00001ffc    00000106     sdo.obj (.text:sendSDO)
+                  00002102    00000002     drv8308.obj (.text:PWM1IntHandler)
+                  00002104    000000f4     timer.obj (.text:SetAlarm)
+                  000021f8    000000cc     can.obj (.text:can_init)
+                  000022c4    000000c4     pdo.obj (.text:PDOStop)
+                  00002388    000000c4     lifegrd.obj (.text:nodeguardInit)
+                  0000244c    000000c0     pdo.obj (.text:TPDO_Communication_Parameter_Callback)
+                  0000250c    000000c0     lifegrd.obj (.text:heartbeatInit)
+                  000025cc    000000b2     lifegrd.obj (.text:GuardTimeAlarm)
+                  0000267e    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : i_div0.obj (.text)
+                  00002680    0000009c     encoder.obj (.text:encoder_init)
+                  0000271c    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.obj (.text)
+                  000027b8    00000098     drv8308.obj (.text:WriteDrv)
+                  00002850    00000090     lights.obj (.text:lights_turn_rgb)
+                  000028e0    00000088     sonar.obj (.text:sonar_init)
+                  00002968    00000084     pdo.obj (.text:PDOInit)
+                  000029ec    00000080     sdo.obj (.text:sendSDOabort)
+                  00002a6c    0000007c     can.obj (.text:can_write)
+                  00002ae8    0000007c     sonar.obj (.text:inputInt)
+                  00002b64    0000007a     sdo.obj (.text:resetSDOline)
+                  00002bde    0000007a     rtsv7M4_T_le_v4SPD16_eabi.lib : memset_t2.obj (.text)
+                  00002c58    00000078     sync.obj (.text:startSYNC)
+                  00002cd0    00000074     driver.obj (.text:ConfigureUART)
+                  00002d44    00000074     uartstdio.obj (.text:UARTStdioConfig)
+                  00002db8    00000070     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.obj (.text)
+                  00002e28    00000068     driverlib.lib : interrupt.obj (.text:IntEnable)
+                  00002e90    00000068     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_lzss.obj (.text:decompress:lzss)
+                  00002ef8    00000064     main.obj (.text:main)
+                  00002f5c    00000062     lifegrd.obj (.text:ProducerHeartbeatAlarm)
+                  00002fbe    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : mpu_init.obj (.text)
+                  00002fc0    0000005c     uartstdio.obj (.text:UARTwrite)
+                  0000301c    00000058     lifegrd.obj (.text:heartbeatStop)
+                  00003074    00000054     rtsv7M4_T_le_v4SPD16_eabi.lib : boot.obj (.text)
+                  000030c8    00000054                                   : exit.obj (.text)
+                  0000311c    0000004c     timer.obj (.text:DelAlarm)
+                  00003168    0000004c     emcy.obj (.text:OnNumberOfErrorsUpdate)
+                  000031b4    0000004c     canfestival_thread.obj (.text:getElapsedTime)
+                  00003200    0000004c     lights.obj (.text:lights_init)
+                  0000324c    0000004c     period.obj (.text:on_sys_period)
+                  00003298    0000004c     rtsv7M4_T_le_v4SPD16_eabi.lib : cpy_tbl.obj (.text)
+                  000032e4    0000004a     lifegrd.obj (.text:ConsumerHeartbeatAlarm)
+                  0000332e    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : startup.obj (.text)
+                  00003330    00000048     sonar.obj (.text:Captureinit)
+                  00003378    00000048     driverlib.lib : gpio.obj (.text:GPIOPinConfigure)
+                  000033c0    00000048     objacces.obj (.text:RegisterSetODentryCallBack)
+                  00003408    00000048     blinky.obj (.text:blinky_thread)
+                  00003450    00000048     can.obj (.text:can_start_listening)
+                  00003498    00000044     sysctl.obj (.text:SysCtlPeripheralReady)
+                  000034dc    00000044     driverlib.lib : gpio.obj (.text:_GPIOIntNumberGet)
+                  00003520    00000042     nmtMaster.obj (.text:masterSendNMTstateChange)
+                  00003562    00000002     --HOLE-- [fill = 0]
+                  00003564    00000040     sysctl.obj (.text:SysCtlPeripheralEnable)
+                  000035a4    00000040     rtsv7M4_T_le_v4SPD16_eabi.lib : u_divt2.obj (.text)
+                  000035e4    00000040     nmtSlave.obj (.text:slaveSendBootUp)
+                  00003624    0000003c     canfestival_thread.obj (.text:canfestival_period)
+                  00003660    0000003c     nmtMaster.obj (.text:masterSendNMTnodeguard)
+                  0000369c    0000003a     pdo.obj (.text:PDOInhibitTimerAlarm)
+                  000036d6    00000038     pdo.obj (.text:PDOEventTimerAlarm)
+                  0000370e    00000036     sync.obj (.text:proceedSYNC)
+                  00003744    00000034     driverlib.lib : interrupt.obj (.text:IntRegister)
+                  00003778    00000034     delay.obj (.text:delay_ms)
+                  000037ac    00000032     sync.obj (.text:stopSYNC)
+                  000037de    00000030     sdo.obj (.text:resetSDO)
+                  0000380e    00000030     sync.obj (.text:sendSYNCMessage)
+                  0000383e    00000002     --HOLE-- [fill = 0]
+                  00003840    00000030     canfestival_thread.obj (.text:setTimer)
+                  00003870    0000002e     pdo.obj (.text:sendPdo)
+                  0000389e    0000002a     driverlib.lib : gpio.obj (.text:GPIODirModeSet)
+                  000038c8    00000028     TestSlave.obj (.text:TestSlave_valueRangeTest)
+                  000038f0    00000028     drv8308.obj (.text:drv8308_enable)
+                  00003918    00000028     lights.obj (.text:lights_turn_led_red)
+                  00003940    00000024     uartstdio.obj (.text:UARTprintf)
+                  00003964    00000024     emcy.obj (.text:emergencyInit)
+                  00003988    00000024     rtsv7M4_T_le_v4SPD16_eabi.lib : memcmp.obj (.text)
+                  000039ac    00000024     objacces.obj (.text:scanIndexOD)
+                  000039d0    0000001e     canfestival_thread.obj (.text:canSend)
+                  000039ee    0000001e     driver.obj (.text:driver_init_system)
+                  00003a0c    0000001c     encoder.obj (.text:encoder_reset)
+                  00003a28    0000001a     lifegrd.obj (.text:OnHeartbeatProducerUpdate)
+                  00003a42    0000001a     lifegrd.obj (.text:OnNodeGuardUpdate)
+                  00003a5c    0000001a     sync.obj (.text:sendSYNC)
+                  00003a76    00000018     driverlib.lib : gpio.obj (.text:GPIOIntRegister)
+                  00003a8e    00000018     states.obj (.text:_preOperational)
+                  00003aa6    00000002     --HOLE-- [fill = 0]
+                  00003aa8    00000018     driver.obj (.text:driver_start_tick)
+                  00003ac0    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.obj (.text)
+                  00003ad8    00000016     emcy.obj (.text:_post_emcy)
+                  00003aee    00000016     objacces.obj (.text:accessDictionaryError)
+                  00003b04    00000016     lifegrd.obj (.text:nodeguardStop)
+                  00003b1a    00000014     sync.obj (.text:OnCOB_ID_SyncUpdate)
+                  00003b2e    00000002     --HOLE-- [fill = 0]
+                  00003b30    00000014     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.text)
+                  00003b44    00000012     driverlib.lib : gpio.obj (.text:GPIOPinTypeQEI)
+                  00003b56    00000012                   : ssi.obj (.text:SSIAdvDataPutFrameEnd)
+                  00003b68    00000012     lifegrd.obj (.text:_post_SlaveStateChange)
+                  00003b7a    00000012     objacces.obj (.text:_storeODSubIndex)
+                  00003b8c    00000012     lifegrd.obj (.text:lifeGuardInit)
+                  00003b9e    00000012     lifegrd.obj (.text:lifeGuardStop)
+                  00003bb0    00000010     driverlib.lib : qei.obj (.text:QEIVelocityConfigure)
+                  00003bc0    0000000e                   : qei.obj (.text:QEIConfigure)
+                  00003bce    0000000e     sync.obj (.text:SyncAlarm)
+                  00003bdc    0000000e     lifegrd.obj (.text:_heartbeatError)
+                  00003bea    0000000e     lifegrd.obj (.text:_nodeguardError)
+                  00003bf8    0000000e     lifegrd.obj (.text:_post_SlaveBootup)
+                  00003c06    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.obj (.text:decompress:none)
+                  00003c14    0000000c     driverlib.lib : gpio.obj (.text:GPIOIntEnable)
+                  00003c20    0000000c     pdo.obj (.text:_RxPDO_EventTimers_Handler)
+                  00003c2c    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.obj (.text:decompress:ZI)
+                  00003c38    0000000c     driver.obj (.text:driver_get_address)
+                  00003c44    0000000a     driverlib.lib : qei.obj (.text:QEIEnable)
+                  00003c4e    0000000a                   : qei.obj (.text:QEIVelocityEnable)
+                  00003c58    0000000a     states.obj (.text:_initialisation)
+                  00003c62    0000000a     states.obj (.text:_operational)
+                  00003c6c    0000000a     sync.obj (.text:_post_TPDO)
+                  00003c76    0000000a     sync.obj (.text:_post_sync)
+                  00003c80    0000000a     states.obj (.text:_stopped)
+                  00003c8a    0000000a     emcy.obj (.text:emergencyStop)
+                  00003c94    00000008     period.obj (.text:SysTickIntHandler)
+                  00003c9c    00000006     driverlib.lib : gpio.obj (.text:GPIOIntClear)
+                  00003ca2    00000006     startup_ccs.obj (.text:ResetISR)
+                  00003ca8    00000006     driverlib.lib : uart.obj (.text:UARTClockSourceSet)
+                  00003cae    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.obj (.text)
+
+.const     0    00003cb4    0000049c     
+                  00003cb4    00000110     TestSlave.obj (.const:TestSlave_objdict)
+                  00003dc4    000000d8     driverlib.lib : gpio.obj (.const:g_ppui32GPIOIntMapSnowflake)
+                  00003e9c    000000c0                   : gpio.obj (.const:g_ppui32GPIOIntMapBlizzard)
+                  00003f5c    00000090                   : gpio.obj (.const:g_pui32GPIOBaseAddrs)
+                  00003fec    00000070                   : interrupt.obj (.const)
+                  0000405c    0000006c     sysctl.obj (.const:g_pui32Xtals)
+                  000040c8    00000012     uartstdio.obj (.const:.string)
+                  000040da    00000002     --HOLE-- [fill = 0]
+                  000040dc    00000010     states.obj (.const:$P$T4$5)
+                  000040ec    00000010     states.obj (.const:$P$T5$6)
+                  000040fc    0000000c     TestSlave.obj (.const:TestSlave_firstIndex)
+                  00004108    0000000c     TestSlave.obj (.const:TestSlave_lastIndex)
+                  00004114    0000000c     uartstdio.obj (.const:g_ui32UARTBase)
+                  00004120    0000000c     uartstdio.obj (.const:g_ui32UARTPeriph)
+                  0000412c    00000007     states.obj (.const:$P$T0$1)
+                  00004133    00000007     states.obj (.const:$P$T1$2)
+                  0000413a    00000007     states.obj (.const:$P$T2$3)
+                  00004141    00000007     states.obj (.const:$P$T3$4)
+                  00004148    00000004     TestSlave.obj (.const)
+                  0000414c    00000004     uartstdio.obj (.const)
+
+.cinit     0    00004150    00000328     
+                  00004150    000002ef     (.cinit..data.load) [load image, compression = lzss]
+                  0000443f    00000001     --HOLE-- [fill = 0]
+                  00004440    0000000c     (__TI_handler_table)
+                  0000444c    00000004     --HOLE-- [fill = 0]
+                  00004450    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00004458    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
+                  00004460    00000018     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.vtable    0    20000000    0000026c     UNINITIALIZED
+                  20000000    0000026c     driverlib.lib : interrupt.obj (.vtable)
+
+.data      0    2000026c    00000a28     UNINITIALIZED
+                  2000026c    0000023c     TestSlave.obj (.data:TestSlave_Data)
+                  200004a8    000000cd     TestSlave.obj (.data)
+                  20000575    00000001     main.obj (.data)
+                  20000576    00000002     --HOLE--
+                  20000578    000000c0     timer.obj (.data:timers)
+                  20000638    00000084     TestSlave.obj (.data:TestSlave_Index1A00)
+                  200006bc    0000006c     TestSlave.obj (.data:TestSlave_Index1003)
+                  20000728    0000005a     TestSlave.obj (.data:TestSlave_PDO_status)
+                  20000782    00000002     --HOLE--
+                  20000784    00000048     TestSlave.obj (.data:TestSlave_Index1800)
+                  200007cc    00000048     TestSlave.obj (.data:TestSlave_Index1801)
+                  20000814    00000048     TestSlave.obj (.data:TestSlave_Index1802)
+                  2000085c    00000048     TestSlave.obj (.data:TestSlave_Index1803)
+                  200008a4    00000048     TestSlave.obj (.data:TestSlave_Index1804)
+                  200008ec    0000003c     TestSlave.obj (.data:TestSlave_Index1010)
+                  20000928    0000003c     TestSlave.obj (.data:TestSlave_Index1011)
+                  20000964    0000003c     TestSlave.obj (.data:TestSlave_Index1018)
+                  200009a0    00000028     TestSlave.obj (.data:TestSlave_obj1A00)
+                  200009c8    00000024     TestSlave.obj (.data:TestSlave_Index1003_callbacks)
+                  200009ec    00000024     TestSlave.obj (.data:TestSlave_Index1200)
+                  20000a10    00000020     TestSlave.obj (.data:TestSlave_obj1003)
+                  20000a30    00000018     TestSlave.obj (.data:TestSlave_Index1800_callbacks)
+                  20000a48    00000018     TestSlave.obj (.data:TestSlave_Index1801_callbacks)
+                  20000a60    00000018     TestSlave.obj (.data:TestSlave_Index1802_callbacks)
+                  20000a78    00000018     TestSlave.obj (.data:TestSlave_Index1803_callbacks)
+                  20000a90    00000018     TestSlave.obj (.data:TestSlave_Index1804_callbacks)
+                  20000aa8    00000018     TestSlave.obj (.data:TestSlave_Index1A01)
+                  20000ac0    00000018     TestSlave.obj (.data:TestSlave_Index1A02)
+                  20000ad8    00000018     TestSlave.obj (.data:TestSlave_Index1A03)
+                  20000af0    00000018     TestSlave.obj (.data:TestSlave_Index1A04)
+                  20000b08    00000014     TestSlave.obj (.data:TestSlave_Index1010_callbacks)
+                  20000b1c    00000014     TestSlave.obj (.data:TestSlave_Index1011_callbacks)
+                  20000b30    00000010     canfestival_thread.obj (.data)
+                  20000b40    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.obj (.data:$O1$$)
+                  20000b4c    0000000c     TestSlave.obj (.data:TestSlave_Index1000)
+                  20000b58    0000000c     TestSlave.obj (.data:TestSlave_Index1001)
+                  20000b64    0000000c     TestSlave.obj (.data:TestSlave_Index1005)
+                  20000b70    0000000c     TestSlave.obj (.data:TestSlave_Index1006)
+                  20000b7c    0000000c     TestSlave.obj (.data:TestSlave_Index1014)
+                  20000b88    0000000c     TestSlave.obj (.data:TestSlave_Index1017)
+                  20000b94    0000000c     TestSlave.obj (.data:TestSlave_Index2000)
+                  20000ba0    0000000c     TestSlave.obj (.data:TestSlave_Index2001)
+                  20000bac    0000000c     TestSlave.obj (.data:TestSlave_Index2002)
+                  20000bb8    0000000c     TestSlave.obj (.data:TestSlave_Index2003)
+                  20000bc4    0000000c     TestSlave.obj (.data:TestSlave_Index2004)
+                  20000bd0    0000000c     TestSlave.obj (.data:TestSlave_Index2005)
+                  20000bdc    0000000c     TestSlave.obj (.data:TestSlave_Index2006)
+                  20000be8    0000000c     TestSlave.obj (.data:TestSlave_Index2007)
+                  20000bf4    0000000c     TestSlave.obj (.data:TestSlave_Index2008)
+                  20000c00    0000000c     TestSlave.obj (.data:TestSlave_Index2009)
+                  20000c0c    0000000c     TestSlave.obj (.data:TestSlave_Index200A)
+                  20000c18    0000000c     TestSlave.obj (.data:TestSlave_Index200B)
+                  20000c24    0000000c     TestSlave.obj (.data:TestSlave_Index200C)
+                  20000c30    0000000c     blinky.obj (.data)
+                  20000c3c    0000000c     period.obj (.data)
+                  20000c48    0000000c     timer.obj (.data)
+                  20000c54    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.obj (.data:$O1$$)
+                  20000c5c    00000005     sonar.obj (.data)
+                  20000c61    00000003     --HOLE--
+                  20000c64    00000005     uartstdio.obj (.data)
+                  20000c69    00000003     --HOLE--
+                  20000c6c    00000004     TestSlave.obj (.data:TestSlave_Index1005_callbacks)
+                  20000c70    00000004     TestSlave.obj (.data:TestSlave_Index1006_callbacks)
+                  20000c74    00000004     TestSlave.obj (.data:TestSlave_Index1017_callbacks)
+                  20000c78    00000004     TestSlave.obj (.data:TestSlave_obj1016)
+                  20000c7c    00000004     TestSlave.obj (.data:TestSlave_obj1A01)
+                  20000c80    00000004     TestSlave.obj (.data:TestSlave_obj1A02)
+                  20000c84    00000004     TestSlave.obj (.data:TestSlave_obj1A03)
+                  20000c88    00000004     TestSlave.obj (.data:TestSlave_obj1A04)
+                  20000c8c    00000004     driver.obj (.data)
+                  20000c90    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : stkdepth_vars.obj (.data)
+
+.stack     0    20000c94    00000200     UNINITIALIZED
+                  20000c94    00000200     --HOLE--
+
+.bss       0    20000e94    0000002c     UNINITIALIZED
+                  20000e94    00000014     (.common:g_sCAN0RxMessage)
+                  20000ea8    00000014     (.common:g_sCAN0TxMessage)
+                  20000ebc    00000004     (.common:TestSlave_heartBeatTimers)
+
+MODULE SUMMARY
+
+       Module                     code    ro data   rw data
+       ------                     ----    -------   -------
+    .\
+       TestSlave.obj              664     300       2311   
+       uartstdio.obj              1024    46        5      
+       sysctl.obj                 596     108       0      
+       startup_ccs.obj            12      620       0      
+       main.obj                   100     0         1      
+       period.obj                 84      0         12     
+    +--+--------------------------+-------+---------+---------+
+       Total:                     2480    1074      2329   
+                                                           
+    .\CanFestival\src\
+       pdo.obj                    2252    0         0      
+       states.obj                 1310    60        0      
+       sdo.obj                    1340    0         0      
+       lifegrd.obj                996     0         0      
+       timer.obj                  604     0         204    
+       objacces.obj               548     0         0      
+       sync.obj                   352     0         0      
+       emcy.obj                   144     0         0      
+       nmtMaster.obj              126     0         0      
+       nmtSlave.obj               64      0         0      
+    +--+--------------------------+-------+---------+---------+
+       Total:                     7736    60        204    
+                                                           
+    .\bsp\
+       drv8308.obj                830     0         0      
+       driver.obj                 654     0         4      
+       can.obj                    400     0         40     
+       sonar.obj                  332     0         5      
+       lights.obj                 260     0         0      
+       encoder.obj                184     0         0      
+       delay.obj                  52      0         0      
+    +--+--------------------------+-------+---------+---------+
+       Total:                     2712    0         49     
+                                                           
+    .\task\
+       canfestival_thread.obj     214     0         16     
+       blinky.obj                 72      0         12     
+    +--+--------------------------+-------+---------+---------+
+       Total:                     286     0         28     
+                                                           
+    C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/ccs/Debug/driverlib.lib
+       gpio.obj                   548     552       0      
+       interrupt.obj              156     112       620    
+       qei.obj                    50      0         0      
+       ssi.obj                    18      0         0      
+       uart.obj                   6       0         0      
+    +--+--------------------------+-------+---------+---------+
+       Total:                     778     664       620    
+                                                           
+    C:\ti\ccsv7\tools\compiler\ti-cgt-arm_16.9.6.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.obj              156     0         0      
+       memset_t2.obj              122     0         0      
+       autoinit.obj               112     0         0      
+       copy_decompress_lzss.obj   104     0         0      
+       exit.obj                   84      0         12     
+       boot.obj                   84      0         0      
+       cpy_tbl.obj                76      0         0      
+       u_divt2.obj                64      0         0      
+       memcmp.obj                 36      0         0      
+       _lock.obj                  20      0         8      
+       args_main.obj              24      0         0      
+       copy_decompress_none.obj   14      0         0      
+       copy_zero_init.obj         12      0         0      
+       pre_init.obj               4       0         0      
+       stkdepth_vars.obj          0       0         4      
+       i_div0.obj                 2       0         0      
+       mpu_init.obj               2       0         0      
+       startup.obj                2       0         0      
+    +--+--------------------------+-------+---------+---------+
+       Total:                     918     0         24     
+                                                           
+       Stack:                     0       0         512    
+       Linker Generated:          0       803       0      
+    +--+--------------------------+-------+---------+---------+
+       Grand Total:               14910   2601      3766   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00004460 records: 3, size/record: 8, table size: 24
+	.data: load addr=00004150, load size=000002ef bytes, run addr=2000026c, run size=00000a28 bytes, compression=lzss
+	.bss: load addr=00004450, load size=00000008 bytes, run addr=20000e94, run size=0000002c bytes, compression=zero_init
+	.vtable: load addr=00004458, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00004440 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_lzss
+	index: 2, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                                                               
+-------   ----                                                               
+000030c9  C$$EXIT                                                            
+00003331  Captureinit                                                        
+00002cd1  ConfigureUART                                                      
+000032e5  ConsumerHeartbeatAlarm                                             
+00001a17  CopyBits                                                           
+0000311d  DelAlarm                                                           
+0000389f  GPIODirModeSet                                                     
+00003c9d  GPIOIntClear                                                       
+00003c15  GPIOIntEnable                                                      
+00003a77  GPIOIntRegister                                                    
+00001c89  GPIOPadConfigSet                                                   
+00003379  GPIOPinConfigure                                                   
+00003b45  GPIOPinTypeQEI                                                     
+000025cd  GuardTimeAlarm                                                     
+00002e29  IntEnable                                                          
+00003745  IntRegister                                                        
+20000b34  NextTime                                                           
+00003b1b  OnCOB_ID_SyncUpdate                                                
+00003a29  OnHeartbeatProducerUpdate                                          
+00003a43  OnNodeGuardUpdate                                                  
+00003169  OnNumberOfErrorsUpdate                                             
+000036d7  PDOEventTimerAlarm                                                 
+0000369d  PDOInhibitTimerAlarm                                               
+00002969  PDOInit                                                            
+000022c5  PDOStop                                                            
+00002103  PWM1IntHandler                                                     
+00002f5d  ProducerHeartbeatAlarm                                             
+00003bc1  QEIConfigure                                                       
+00003c45  QEIEnable                                                          
+00003bb1  QEIVelocityConfigure                                               
+00003c4f  QEIVelocityEnable                                                  
+000033c1  RegisterSetODentryCallBack                                         
+00003ca3  ResetISR                                                           
+00001b51  SDOTimeoutAlarm                                                    
+UNDEFED   SHT$$INIT_ARRAY$$Base                                              
+UNDEFED   SHT$$INIT_ARRAY$$Limit                                             
+00003b57  SSIAdvDataPutFrameEnd                                              
+00002105  SetAlarm                                                           
+200004a8  SlaveMap1                                                          
+200004b4  SlaveMap10                                                         
+200004b8  SlaveMap11                                                         
+200004ba  SlaveMap12                                                         
+200004bc  SlaveMap13                                                         
+200004a9  SlaveMap2                                                          
+200004aa  SlaveMap3                                                          
+200004ab  SlaveMap4                                                          
+200004ac  SlaveMap5                                                          
+200004ad  SlaveMap6                                                          
+200004ae  SlaveMap7                                                          
+200004af  SlaveMap8                                                          
+200004b0  SlaveMap9                                                          
+00003bcf  SyncAlarm                                                          
+00001269  SysCtlClockGet                                                     
+00003565  SysCtlPeripheralEnable                                             
+00003499  SysCtlPeripheralReady                                              
+00003c95  SysTickIntHandler                                                  
+20000b38  TIMER_MAX_COUNT                                                    
+0000244d  TPDO_Communication_Parameter_Callback                              
+2000026c  TestSlave_Data                                                     
+20000b4c  TestSlave_Index1000                                                
+20000b58  TestSlave_Index1001                                                
+200006bc  TestSlave_Index1003                                                
+200009c8  TestSlave_Index1003_callbacks                                      
+20000b64  TestSlave_Index1005                                                
+20000c6c  TestSlave_Index1005_callbacks                                      
+20000b70  TestSlave_Index1006                                                
+20000c70  TestSlave_Index1006_callbacks                                      
+200008ec  TestSlave_Index1010                                                
+20000b08  TestSlave_Index1010_callbacks                                      
+20000928  TestSlave_Index1011                                                
+20000b1c  TestSlave_Index1011_callbacks                                      
+20000b7c  TestSlave_Index1014                                                
+20000b88  TestSlave_Index1017                                                
+20000c74  TestSlave_Index1017_callbacks                                      
+20000964  TestSlave_Index1018                                                
+200009ec  TestSlave_Index1200                                                
+20000784  TestSlave_Index1800                                                
+20000a30  TestSlave_Index1800_callbacks                                      
+200007cc  TestSlave_Index1801                                                
+20000a48  TestSlave_Index1801_callbacks                                      
+20000814  TestSlave_Index1802                                                
+20000a60  TestSlave_Index1802_callbacks                                      
+2000085c  TestSlave_Index1803                                                
+20000a78  TestSlave_Index1803_callbacks                                      
+200008a4  TestSlave_Index1804                                                
+20000a90  TestSlave_Index1804_callbacks                                      
+20000638  TestSlave_Index1A00                                                
+20000aa8  TestSlave_Index1A01                                                
+20000ac0  TestSlave_Index1A02                                                
+20000ad8  TestSlave_Index1A03                                                
+20000af0  TestSlave_Index1A04                                                
+20000b94  TestSlave_Index2000                                                
+20000ba0  TestSlave_Index2001                                                
+20000bac  TestSlave_Index2002                                                
+20000bb8  TestSlave_Index2003                                                
+20000bc4  TestSlave_Index2004                                                
+20000bd0  TestSlave_Index2005                                                
+20000bdc  TestSlave_Index2006                                                
+20000be8  TestSlave_Index2007                                                
+20000bf4  TestSlave_Index2008                                                
+20000c00  TestSlave_Index2009                                                
+20000c0c  TestSlave_Index200A                                                
+20000c18  TestSlave_Index200B                                                
+20000c24  TestSlave_Index200C                                                
+0000414a  TestSlave_ObjdictSize                                              
+20000728  TestSlave_PDO_status                                               
+200004be  TestSlave_bDeviceNodeId                                            
+000040fc  TestSlave_firstIndex                                               
+20000ebc  TestSlave_heartBeatTimers                                          
+200004c5  TestSlave_highestSubIndex_obj1003                                  
+200004d3  TestSlave_highestSubIndex_obj1010                                  
+200004e4  TestSlave_highestSubIndex_obj1011                                  
+200004fc  TestSlave_highestSubIndex_obj1016                                  
+20000500  TestSlave_highestSubIndex_obj1018                                  
+20000514  TestSlave_highestSubIndex_obj1200                                  
+20000520  TestSlave_highestSubIndex_obj1800                                  
+20000530  TestSlave_highestSubIndex_obj1801                                  
+20000540  TestSlave_highestSubIndex_obj1802                                  
+20000550  TestSlave_highestSubIndex_obj1803                                  
+20000560  TestSlave_highestSubIndex_obj1804                                  
+20000570  TestSlave_highestSubIndex_obj1A00                                  
+20000571  TestSlave_highestSubIndex_obj1A01                                  
+20000572  TestSlave_highestSubIndex_obj1A02                                  
+20000573  TestSlave_highestSubIndex_obj1A03                                  
+20000574  TestSlave_highestSubIndex_obj1A04                                  
+00004148  TestSlave_iam_a_slave                                              
+00004108  TestSlave_lastIndex                                                
+200004c0  TestSlave_obj1000                                                  
+200004c4  TestSlave_obj1001                                                  
+20000a10  TestSlave_obj1003                                                  
+200004c8  TestSlave_obj1005                                                  
+200004cc  TestSlave_obj1006                                                  
+200004d0  TestSlave_obj100C                                                  
+200004d2  TestSlave_obj100D                                                  
+200004d4  TestSlave_obj1010_Save_All_Parameters                              
+200004dc  TestSlave_obj1010_Save_Application_Parameters                      
+200004d8  TestSlave_obj1010_Save_Communication_Parameters                    
+200004e0  TestSlave_obj1010_Save_Manufacturer_Parameters_1                   
+200004e8  TestSlave_obj1011_Restore_All_Default_Parameters                   
+200004f0  TestSlave_obj1011_Restore_Application_Default_Parameters           
+200004ec  TestSlave_obj1011_Restore_Communication_Default_Parameters         
+200004f4  TestSlave_obj1011_Restore_Manufacturer_Defined_Default_Parameters_1
+200004f8  TestSlave_obj1014                                                  
+20000c78  TestSlave_obj1016                                                  
+200004fe  TestSlave_obj1017                                                  
+20000508  TestSlave_obj1018_Product_Code                                     
+2000050c  TestSlave_obj1018_Revision_Number                                  
+20000510  TestSlave_obj1018_Serial_Number                                    
+20000504  TestSlave_obj1018_Vendor_ID                                        
+20000518  TestSlave_obj1200_COB_ID_Client_to_Server_Receive_SDO              
+2000051c  TestSlave_obj1200_COB_ID_Server_to_Client_Transmit_SDO             
+20000524  TestSlave_obj1800_COB_ID_used_by_PDO                               
+2000052c  TestSlave_obj1800_Compatibility_Entry                              
+2000052e  TestSlave_obj1800_Event_Timer                                      
+2000052a  TestSlave_obj1800_Inhibit_Time                                     
+20000528  TestSlave_obj1800_Transmission_Type                                
+20000534  TestSlave_obj1801_COB_ID_used_by_PDO                               
+2000053c  TestSlave_obj1801_Compatibility_Entry                              
+2000053e  TestSlave_obj1801_Event_Timer                                      
+2000053a  TestSlave_obj1801_Inhibit_Time                                     
+20000538  TestSlave_obj1801_Transmission_Type                                
+20000544  TestSlave_obj1802_COB_ID_used_by_PDO                               
+2000054c  TestSlave_obj1802_Compatibility_Entry                              
+2000054e  TestSlave_obj1802_Event_Timer                                      
+2000054a  TestSlave_obj1802_Inhibit_Time                                     
+20000548  TestSlave_obj1802_Transmission_Type                                
+20000554  TestSlave_obj1803_COB_ID_used_by_PDO                               
+2000055c  TestSlave_obj1803_Compatibility_Entry                              
+2000055e  TestSlave_obj1803_Event_Timer                                      
+2000055a  TestSlave_obj1803_Inhibit_Time                                     
+20000558  TestSlave_obj1803_Transmission_Type                                
+20000564  TestSlave_obj1804_COB_ID_used_by_PDO                               
+2000056c  TestSlave_obj1804_Compatibility_Entry                              
+2000056e  TestSlave_obj1804_Event_Timer                                      
+2000056a  TestSlave_obj1804_Inhibit_Time                                     
+20000568  TestSlave_obj1804_Transmission_Type                                
+200009a0  TestSlave_obj1A00                                                  
+20000c7c  TestSlave_obj1A01                                                  
+20000c80  TestSlave_obj1A02                                                  
+20000c84  TestSlave_obj1A03                                                  
+20000c88  TestSlave_obj1A04                                                  
+00003cb4  TestSlave_objdict                                                  
+000007f5  TestSlave_scanIndexOD                                              
+000038c9  TestSlave_valueRangeTest                                           
+20000b30  TimeCNT                                                            
+00001ee1  TimeDispatch                                                       
+00003ca9  UARTClockSourceSet                                                 
+00002d45  UARTStdioConfig                                                    
+00003941  UARTprintf                                                         
+0000026d  UARTvprintf                                                        
+00002fc1  UARTwrite                                                          
+000027b9  WriteDrv                                                           
+00003c21  _RxPDO_EventTimers_Handler                                         
+20000e94  __STACK_END                                                        
+00000200  __STACK_SIZE                                                       
+20000e94  __STACK_TOP                                                        
+00004460  __TI_CINIT_Base                                                    
+00004478  __TI_CINIT_Limit                                                   
+00004440  __TI_Handler_Table_Base                                            
+0000444c  __TI_Handler_Table_Limit                                           
+00002db9  __TI_auto_init                                                     
+20000b40  __TI_cleanup_ptr                                                   
+00002e91  __TI_decompress_lzss                                               
+00003c07  __TI_decompress_none                                               
+20000b44  __TI_dtors_ptr                                                     
+20000b48  __TI_enable_exit_profile_output                                    
+ffffffff  __TI_pprof_out_hndl                                                
+ffffffff  __TI_prof_data_size                                                
+ffffffff  __TI_prof_data_start                                               
+00000000  __TI_static_base__                                                 
+00003c2d  __TI_zero_init                                                     
+0000267f  __aeabi_idiv0                                                      
+00002bdf  __aeabi_memclr                                                     
+00002bdf  __aeabi_memclr4                                                    
+00002bdf  __aeabi_memclr8                                                    
+0000271d  __aeabi_memcpy                                                     
+0000271d  __aeabi_memcpy4                                                    
+0000271d  __aeabi_memcpy8                                                    
+00002be1  __aeabi_memset                                                     
+00002be1  __aeabi_memset4                                                    
+00002be1  __aeabi_memset8                                                    
+000035a5  __aeabi_uidiv                                                      
+000035a5  __aeabi_uidivmod                                                   
+ffffffff  __binit__                                                          
+ffffffff  __c_args__                                                         
+00002fbf  __mpu_init                                                         
+20000c94  __stack                                                            
+20000c8c  _address                                                           
+00003ac1  _args_main                                                         
+00003075  _c_int00                                                           
+00001439  _getODentry                                                        
+00003bdd  _heartbeatError                                                    
+00003c59  _initialisation                                                    
+20000c38  _is_read_dis                                                       
+20000c30  _led_red                                                           
+20000c54  _lock                                                              
+00003beb  _nodeguardError                                                    
+00003b3f  _nop                                                               
+00003c63  _operational                                                       
+00003bf9  _post_SlaveBootup                                                  
+00003b69  _post_SlaveStateChange                                             
+00003c6d  _post_TPDO                                                         
+00003ad9  _post_emcy                                                         
+00003c77  _post_sync                                                         
+00003a8f  _preOperational                                                    
+00003b37  _register_lock                                                     
+00003b31  _register_unlock                                                   
+20000c34  _rgb                                                               
+00000cad  _sendPDOevent                                                      
+00003c81  _stopped                                                           
+00003b7b  _storeODSubIndex                                                   
+0000332f  _system_post_cinit                                                 
+00003caf  _system_pre_init                                                   
+20000c3c  _testi                                                             
+20000c40  _tick                                                              
+20000c44  _tick_second                                                       
+20000c58  _unlock                                                            
+000030cd  abort                                                              
+00003aef  accessDictionaryError                                              
+ffffffff  binit                                                              
+00003409  blinky_thread                                                      
+000018d1  buildPDO                                                           
+000039d1  canSend                                                            
+000021f9  can_init                                                           
+00003451  can_start_listening                                                
+00002a6d  can_write                                                          
+00003625  canfestival_period                                                 
+00003299  copy_in                                                            
+00003779  delay_ms                                                           
+00003c39  driver_get_address                                                 
+00000ebd  driver_init_hardware                                               
+000039ef  driver_init_system                                                 
+00003aa9  driver_start_tick                                                  
+000038f1  drv8308_enable                                                     
+00000579  drv8308_init                                                       
+20000c60  echowait                                                           
+00003965  emergencyInit                                                      
+00003c8b  emergencyStop                                                      
+00002681  encoder_init                                                       
+00003a0d  encoder_reset                                                      
+000030d5  exit                                                               
+20000000  g_pfnRAMVectors                                                    
+00000000  g_pfnVectors                                                       
+20000e94  g_sCAN0RxMessage                                                   
+20000ea8  g_sCAN0TxMessage                                                   
+000031b5  getElapsedTime                                                     
+0000250d  heartbeatInit                                                      
+0000301d  heartbeatStop                                                      
+00001095  initSDOline                                                        
+00002ae9  inputInt                                                           
+20000c4c  last_timer_raw                                                     
+00003b8d  lifeGuardInit                                                      
+00003b9f  lifeGuardStop                                                      
+00003201  lights_init                                                        
+00003919  lights_turn_led_red                                                
+00002851  lights_turn_rgb                                                    
+00002ef9  main                                                               
+20000c90  main_func_sp                                                       
+00003661  masterSendNMTnodeguard                                             
+00003521  masterSendNMTstateChange                                           
+00003989  memcmp                                                             
+0000271d  memcpy                                                             
+00002be7  memset                                                             
+20000575  nodeID                                                             
+00002389  nodeguardInit                                                      
+00003b05  nodeguardStop                                                      
+0000324d  on_sys_period                                                      
+0000370f  proceedSYNC                                                        
+20000c5c  pulse                                                              
+000037df  resetSDO                                                           
+00002b65  resetSDOline                                                       
+000039ad  scanIndexOD                                                        
+000015c9  sendOnePDOevent                                                    
+00001ffd  sendSDO                                                            
+000029ed  sendSDOabort                                                       
+00003a5d  sendSYNC                                                           
+0000380f  sendSYNCMessage                                                    
+00000a65  setNodeId                                                          
+00001dbd  setState                                                           
+00003841  setTimer                                                           
+000035e5  slaveSendBootUp                                                    
+000028e1  sonar_init                                                         
+00002c59  startSYNC                                                          
+000037ad  stopSYNC                                                           
+00001755  switchCommunicationState                                           
+20000c50  tdcount                                                            
+20000578  timers                                                             
+20000c48  total_sleep_time                                                   
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                                                               
+-------   ----                                                               
+00000000  __TI_static_base__                                                 
+00000000  g_pfnVectors                                                       
+00000200  __STACK_SIZE                                                       
+0000026d  UARTvprintf                                                        
+00000579  drv8308_init                                                       
+000007f5  TestSlave_scanIndexOD                                              
+00000a65  setNodeId                                                          
+00000cad  _sendPDOevent                                                      
+00000ebd  driver_init_hardware                                               
+00001095  initSDOline                                                        
+00001269  SysCtlClockGet                                                     
+00001439  _getODentry                                                        
+000015c9  sendOnePDOevent                                                    
+00001755  switchCommunicationState                                           
+000018d1  buildPDO                                                           
+00001a17  CopyBits                                                           
+00001b51  SDOTimeoutAlarm                                                    
+00001c89  GPIOPadConfigSet                                                   
+00001dbd  setState                                                           
+00001ee1  TimeDispatch                                                       
+00001ffd  sendSDO                                                            
+00002103  PWM1IntHandler                                                     
+00002105  SetAlarm                                                           
+000021f9  can_init                                                           
+000022c5  PDOStop                                                            
+00002389  nodeguardInit                                                      
+0000244d  TPDO_Communication_Parameter_Callback                              
+0000250d  heartbeatInit                                                      
+000025cd  GuardTimeAlarm                                                     
+0000267f  __aeabi_idiv0                                                      
+00002681  encoder_init                                                       
+0000271d  __aeabi_memcpy                                                     
+0000271d  __aeabi_memcpy4                                                    
+0000271d  __aeabi_memcpy8                                                    
+0000271d  memcpy                                                             
+000027b9  WriteDrv                                                           
+00002851  lights_turn_rgb                                                    
+000028e1  sonar_init                                                         
+00002969  PDOInit                                                            
+000029ed  sendSDOabort                                                       
+00002a6d  can_write                                                          
+00002ae9  inputInt                                                           
+00002b65  resetSDOline                                                       
+00002bdf  __aeabi_memclr                                                     
+00002bdf  __aeabi_memclr4                                                    
+00002bdf  __aeabi_memclr8                                                    
+00002be1  __aeabi_memset                                                     
+00002be1  __aeabi_memset4                                                    
+00002be1  __aeabi_memset8                                                    
+00002be7  memset                                                             
+00002c59  startSYNC                                                          
+00002cd1  ConfigureUART                                                      
+00002d45  UARTStdioConfig                                                    
+00002db9  __TI_auto_init                                                     
+00002e29  IntEnable                                                          
+00002e91  __TI_decompress_lzss                                               
+00002ef9  main                                                               
+00002f5d  ProducerHeartbeatAlarm                                             
+00002fbf  __mpu_init                                                         
+00002fc1  UARTwrite                                                          
+0000301d  heartbeatStop                                                      
+00003075  _c_int00                                                           
+000030c9  C$$EXIT                                                            
+000030cd  abort                                                              
+000030d5  exit                                                               
+0000311d  DelAlarm                                                           
+00003169  OnNumberOfErrorsUpdate                                             
+000031b5  getElapsedTime                                                     
+00003201  lights_init                                                        
+0000324d  on_sys_period                                                      
+00003299  copy_in                                                            
+000032e5  ConsumerHeartbeatAlarm                                             
+0000332f  _system_post_cinit                                                 
+00003331  Captureinit                                                        
+00003379  GPIOPinConfigure                                                   
+000033c1  RegisterSetODentryCallBack                                         
+00003409  blinky_thread                                                      
+00003451  can_start_listening                                                
+00003499  SysCtlPeripheralReady                                              
+00003521  masterSendNMTstateChange                                           
+00003565  SysCtlPeripheralEnable                                             
+000035a5  __aeabi_uidiv                                                      
+000035a5  __aeabi_uidivmod                                                   
+000035e5  slaveSendBootUp                                                    
+00003625  canfestival_period                                                 
+00003661  masterSendNMTnodeguard                                             
+0000369d  PDOInhibitTimerAlarm                                               
+000036d7  PDOEventTimerAlarm                                                 
+0000370f  proceedSYNC                                                        
+00003745  IntRegister                                                        
+00003779  delay_ms                                                           
+000037ad  stopSYNC                                                           
+000037df  resetSDO                                                           
+0000380f  sendSYNCMessage                                                    
+00003841  setTimer                                                           
+0000389f  GPIODirModeSet                                                     
+000038c9  TestSlave_valueRangeTest                                           
+000038f1  drv8308_enable                                                     
+00003919  lights_turn_led_red                                                
+00003941  UARTprintf                                                         
+00003965  emergencyInit                                                      
+00003989  memcmp                                                             
+000039ad  scanIndexOD                                                        
+000039d1  canSend                                                            
+000039ef  driver_init_system                                                 
+00003a0d  encoder_reset                                                      
+00003a29  OnHeartbeatProducerUpdate                                          
+00003a43  OnNodeGuardUpdate                                                  
+00003a5d  sendSYNC                                                           
+00003a77  GPIOIntRegister                                                    
+00003a8f  _preOperational                                                    
+00003aa9  driver_start_tick                                                  
+00003ac1  _args_main                                                         
+00003ad9  _post_emcy                                                         
+00003aef  accessDictionaryError                                              
+00003b05  nodeguardStop                                                      
+00003b1b  OnCOB_ID_SyncUpdate                                                
+00003b31  _register_unlock                                                   
+00003b37  _register_lock                                                     
+00003b3f  _nop                                                               
+00003b45  GPIOPinTypeQEI                                                     
+00003b57  SSIAdvDataPutFrameEnd                                              
+00003b69  _post_SlaveStateChange                                             
+00003b7b  _storeODSubIndex                                                   
+00003b8d  lifeGuardInit                                                      
+00003b9f  lifeGuardStop                                                      
+00003bb1  QEIVelocityConfigure                                               
+00003bc1  QEIConfigure                                                       
+00003bcf  SyncAlarm                                                          
+00003bdd  _heartbeatError                                                    
+00003beb  _nodeguardError                                                    
+00003bf9  _post_SlaveBootup                                                  
+00003c07  __TI_decompress_none                                               
+00003c15  GPIOIntEnable                                                      
+00003c21  _RxPDO_EventTimers_Handler                                         
+00003c2d  __TI_zero_init                                                     
+00003c39  driver_get_address                                                 
+00003c45  QEIEnable                                                          
+00003c4f  QEIVelocityEnable                                                  
+00003c59  _initialisation                                                    
+00003c63  _operational                                                       
+00003c6d  _post_TPDO                                                         
+00003c77  _post_sync                                                         
+00003c81  _stopped                                                           
+00003c8b  emergencyStop                                                      
+00003c95  SysTickIntHandler                                                  
+00003c9d  GPIOIntClear                                                       
+00003ca3  ResetISR                                                           
+00003ca9  UARTClockSourceSet                                                 
+00003caf  _system_pre_init                                                   
+00003cb4  TestSlave_objdict                                                  
+000040fc  TestSlave_firstIndex                                               
+00004108  TestSlave_lastIndex                                                
+00004148  TestSlave_iam_a_slave                                              
+0000414a  TestSlave_ObjdictSize                                              
+00004440  __TI_Handler_Table_Base                                            
+0000444c  __TI_Handler_Table_Limit                                           
+00004460  __TI_CINIT_Base                                                    
+00004478  __TI_CINIT_Limit                                                   
+20000000  g_pfnRAMVectors                                                    
+2000026c  TestSlave_Data                                                     
+200004a8  SlaveMap1                                                          
+200004a9  SlaveMap2                                                          
+200004aa  SlaveMap3                                                          
+200004ab  SlaveMap4                                                          
+200004ac  SlaveMap5                                                          
+200004ad  SlaveMap6                                                          
+200004ae  SlaveMap7                                                          
+200004af  SlaveMap8                                                          
+200004b0  SlaveMap9                                                          
+200004b4  SlaveMap10                                                         
+200004b8  SlaveMap11                                                         
+200004ba  SlaveMap12                                                         
+200004bc  SlaveMap13                                                         
+200004be  TestSlave_bDeviceNodeId                                            
+200004c0  TestSlave_obj1000                                                  
+200004c4  TestSlave_obj1001                                                  
+200004c5  TestSlave_highestSubIndex_obj1003                                  
+200004c8  TestSlave_obj1005                                                  
+200004cc  TestSlave_obj1006                                                  
+200004d0  TestSlave_obj100C                                                  
+200004d2  TestSlave_obj100D                                                  
+200004d3  TestSlave_highestSubIndex_obj1010                                  
+200004d4  TestSlave_obj1010_Save_All_Parameters                              
+200004d8  TestSlave_obj1010_Save_Communication_Parameters                    
+200004dc  TestSlave_obj1010_Save_Application_Parameters                      
+200004e0  TestSlave_obj1010_Save_Manufacturer_Parameters_1                   
+200004e4  TestSlave_highestSubIndex_obj1011                                  
+200004e8  TestSlave_obj1011_Restore_All_Default_Parameters                   
+200004ec  TestSlave_obj1011_Restore_Communication_Default_Parameters         
+200004f0  TestSlave_obj1011_Restore_Application_Default_Parameters           
+200004f4  TestSlave_obj1011_Restore_Manufacturer_Defined_Default_Parameters_1
+200004f8  TestSlave_obj1014                                                  
+200004fc  TestSlave_highestSubIndex_obj1016                                  
+200004fe  TestSlave_obj1017                                                  
+20000500  TestSlave_highestSubIndex_obj1018                                  
+20000504  TestSlave_obj1018_Vendor_ID                                        
+20000508  TestSlave_obj1018_Product_Code                                     
+2000050c  TestSlave_obj1018_Revision_Number                                  
+20000510  TestSlave_obj1018_Serial_Number                                    
+20000514  TestSlave_highestSubIndex_obj1200                                  
+20000518  TestSlave_obj1200_COB_ID_Client_to_Server_Receive_SDO              
+2000051c  TestSlave_obj1200_COB_ID_Server_to_Client_Transmit_SDO             
+20000520  TestSlave_highestSubIndex_obj1800                                  
+20000524  TestSlave_obj1800_COB_ID_used_by_PDO                               
+20000528  TestSlave_obj1800_Transmission_Type                                
+2000052a  TestSlave_obj1800_Inhibit_Time                                     
+2000052c  TestSlave_obj1800_Compatibility_Entry                              
+2000052e  TestSlave_obj1800_Event_Timer                                      
+20000530  TestSlave_highestSubIndex_obj1801                                  
+20000534  TestSlave_obj1801_COB_ID_used_by_PDO                               
+20000538  TestSlave_obj1801_Transmission_Type                                
+2000053a  TestSlave_obj1801_Inhibit_Time                                     
+2000053c  TestSlave_obj1801_Compatibility_Entry                              
+2000053e  TestSlave_obj1801_Event_Timer                                      
+20000540  TestSlave_highestSubIndex_obj1802                                  
+20000544  TestSlave_obj1802_COB_ID_used_by_PDO                               
+20000548  TestSlave_obj1802_Transmission_Type                                
+2000054a  TestSlave_obj1802_Inhibit_Time                                     
+2000054c  TestSlave_obj1802_Compatibility_Entry                              
+2000054e  TestSlave_obj1802_Event_Timer                                      
+20000550  TestSlave_highestSubIndex_obj1803                                  
+20000554  TestSlave_obj1803_COB_ID_used_by_PDO                               
+20000558  TestSlave_obj1803_Transmission_Type                                
+2000055a  TestSlave_obj1803_Inhibit_Time                                     
+2000055c  TestSlave_obj1803_Compatibility_Entry                              
+2000055e  TestSlave_obj1803_Event_Timer                                      
+20000560  TestSlave_highestSubIndex_obj1804                                  
+20000564  TestSlave_obj1804_COB_ID_used_by_PDO                               
+20000568  TestSlave_obj1804_Transmission_Type                                
+2000056a  TestSlave_obj1804_Inhibit_Time                                     
+2000056c  TestSlave_obj1804_Compatibility_Entry                              
+2000056e  TestSlave_obj1804_Event_Timer                                      
+20000570  TestSlave_highestSubIndex_obj1A00                                  
+20000571  TestSlave_highestSubIndex_obj1A01                                  
+20000572  TestSlave_highestSubIndex_obj1A02                                  
+20000573  TestSlave_highestSubIndex_obj1A03                                  
+20000574  TestSlave_highestSubIndex_obj1A04                                  
+20000575  nodeID                                                             
+20000578  timers                                                             
+20000638  TestSlave_Index1A00                                                
+200006bc  TestSlave_Index1003                                                
+20000728  TestSlave_PDO_status                                               
+20000784  TestSlave_Index1800                                                
+200007cc  TestSlave_Index1801                                                
+20000814  TestSlave_Index1802                                                
+2000085c  TestSlave_Index1803                                                
+200008a4  TestSlave_Index1804                                                
+200008ec  TestSlave_Index1010                                                
+20000928  TestSlave_Index1011                                                
+20000964  TestSlave_Index1018                                                
+200009a0  TestSlave_obj1A00                                                  
+200009c8  TestSlave_Index1003_callbacks                                      
+200009ec  TestSlave_Index1200                                                
+20000a10  TestSlave_obj1003                                                  
+20000a30  TestSlave_Index1800_callbacks                                      
+20000a48  TestSlave_Index1801_callbacks                                      
+20000a60  TestSlave_Index1802_callbacks                                      
+20000a78  TestSlave_Index1803_callbacks                                      
+20000a90  TestSlave_Index1804_callbacks                                      
+20000aa8  TestSlave_Index1A01                                                
+20000ac0  TestSlave_Index1A02                                                
+20000ad8  TestSlave_Index1A03                                                
+20000af0  TestSlave_Index1A04                                                
+20000b08  TestSlave_Index1010_callbacks                                      
+20000b1c  TestSlave_Index1011_callbacks                                      
+20000b30  TimeCNT                                                            
+20000b34  NextTime                                                           
+20000b38  TIMER_MAX_COUNT                                                    
+20000b40  __TI_cleanup_ptr                                                   
+20000b44  __TI_dtors_ptr                                                     
+20000b48  __TI_enable_exit_profile_output                                    
+20000b4c  TestSlave_Index1000                                                
+20000b58  TestSlave_Index1001                                                
+20000b64  TestSlave_Index1005                                                
+20000b70  TestSlave_Index1006                                                
+20000b7c  TestSlave_Index1014                                                
+20000b88  TestSlave_Index1017                                                
+20000b94  TestSlave_Index2000                                                
+20000ba0  TestSlave_Index2001                                                
+20000bac  TestSlave_Index2002                                                
+20000bb8  TestSlave_Index2003                                                
+20000bc4  TestSlave_Index2004                                                
+20000bd0  TestSlave_Index2005                                                
+20000bdc  TestSlave_Index2006                                                
+20000be8  TestSlave_Index2007                                                
+20000bf4  TestSlave_Index2008                                                
+20000c00  TestSlave_Index2009                                                
+20000c0c  TestSlave_Index200A                                                
+20000c18  TestSlave_Index200B                                                
+20000c24  TestSlave_Index200C                                                
+20000c30  _led_red                                                           
+20000c34  _rgb                                                               
+20000c38  _is_read_dis                                                       
+20000c3c  _testi                                                             
+20000c40  _tick                                                              
+20000c44  _tick_second                                                       
+20000c48  total_sleep_time                                                   
+20000c4c  last_timer_raw                                                     
+20000c50  tdcount                                                            
+20000c54  _lock                                                              
+20000c58  _unlock                                                            
+20000c5c  pulse                                                              
+20000c60  echowait                                                           
+20000c6c  TestSlave_Index1005_callbacks                                      
+20000c70  TestSlave_Index1006_callbacks                                      
+20000c74  TestSlave_Index1017_callbacks                                      
+20000c78  TestSlave_obj1016                                                  
+20000c7c  TestSlave_obj1A01                                                  
+20000c80  TestSlave_obj1A02                                                  
+20000c84  TestSlave_obj1A03                                                  
+20000c88  TestSlave_obj1A04                                                  
+20000c8c  _address                                                           
+20000c90  main_func_sp                                                       
+20000c94  __stack                                                            
+20000e94  __STACK_END                                                        
+20000e94  __STACK_TOP                                                        
+20000e94  g_sCAN0RxMessage                                                   
+20000ea8  g_sCAN0TxMessage                                                   
+20000ebc  TestSlave_heartBeatTimers                                          
+ffffffff  __TI_pprof_out_hndl                                                
+ffffffff  __TI_prof_data_size                                                
+ffffffff  __TI_prof_data_start                                               
+ffffffff  __binit__                                                          
+ffffffff  __c_args__                                                         
+ffffffff  binit                                                              
+UNDEFED   SHT$$INIT_ARRAY$$Base                                              
+UNDEFED   SHT$$INIT_ARRAY$$Limit                                             
+
+[328 symbols]
