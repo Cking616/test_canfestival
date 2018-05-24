@@ -54,7 +54,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define REAL32	float
 #define REAL64 double
 #include "can.h"
+#include <stdint.h>
+#include <stdbool.h>
 
+#include "utils/uartstdio.h"
+
+//#define DEBUG_ERR_CONSOLE_ON
+//#define DEBUG_WAR_CONSOLE_ON
 // MSG functions
 // not finished, the strings have to be placed to the flash and printed out 
 // using the printf_P function
@@ -62,10 +68,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // ---------------------
 #ifdef DEBUG_ERR_CONSOLE_ON
 #define MSG_ERR(num, str, val)      \
-          printf(num, ' ');	\
-          printf(str);		\
-          printf(val);		\
-          printf('\n');
+          UARTprintf("0x%X ", num);	\
+          UARTprintf(str);		\
+          UARTprintf("0x%X",val);		\
+          UARTprintf("\n");
 #else
 #    define MSG_ERR(num, str, val)
 #endif
@@ -74,10 +80,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 // ---------------------
 #ifdef DEBUG_WAR_CONSOLE_ON
 #define MSG_WAR(num, str, val)      \
-          printf(num, ' ');	\
-          printf(str);		\
-          printf(val);		\
-          printf('\n');
+          UARTprintf("0x%X ", num); \
+          UARTprintf(str);      \
+          UARTprintf("ox%X",val);     \
+          UARTprintf("\n");
 #else
 #    define MSG_WAR(num, str, val)
 #endif

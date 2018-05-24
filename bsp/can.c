@@ -17,8 +17,9 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/pin_map.h"
 #include "canfestival.h"
+#include "utils/uartstdio.h"
 
-extern CO_Data TestSlave_Data;
+extern CO_Data TestMaster_Data;
 
 // window ID:3  ID:0  ID:1  ID:2 door
 // wheels: F:  0   2
@@ -231,9 +232,10 @@ void CAN0IntHandler(void)
         }
 
         g_RxMessage.cob_id = g_sCAN0RxMessage.ui32MsgID;
+        //UARTprintf("Rec len:%d,Rec data[0]:0x%X\n",   g_RxMessage.len, g_RxMessage.data[0]);
         //}
 
-        canDispatch(&TestSlave_Data, &g_RxMessage);
+        canDispatch(&TestMaster_Data, &g_RxMessage);
         // Clear the message object interrupt.
         while(HWREG(CAN0_BASE + CAN_O_IF2CRQ) & CAN_IF1CRQ_BUSY) { }
         // Only change the interrupt pending state by setting only the CAN_IF1CMSK_CLRINTPND bit.

@@ -30,14 +30,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 // The timer of the AVR counts from 0000 to 0xFFFF in CTC mode (it can be
 // shortened setting OCR3A eg. to get 2ms instead of 2.048ms)
-#define TIMEVAL_MAX 0xFFFF
+#define TIMEVAL_MAX       70000
 
-// The timer is incrementing every 4 us.
-//#define MS_TO_TIMEVAL(ms) (ms * 250)
-//#define US_TO_TIMEVAL(us) (us>>2)
-
-// The timer is incrementing every 8 us.
-#define MS_TO_TIMEVAL(ms) ((ms) * 125)
-#define US_TO_TIMEVAL(us) ((us)>>3)
+// The timer is incrementing every 1 ms.
+#define MS_TO_TIMEVAL(ms) ((ms) * 1)
+#define US_TO_TIMEVAL(us) ((us) / 1000)
 
 #endif

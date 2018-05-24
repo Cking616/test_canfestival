@@ -120,7 +120,7 @@ void proceedNODE_GUARD(CO_Data* d, Message* m )
       e_nodeState newNodeState = (e_nodeState) ((*m).data[0] & 0x7F);
 
       MSG_WAR(0x3110, "Received NMT nodeId : ", nodeId);
-      
+
       /*!
       ** Record node response for node guarding service
       */
