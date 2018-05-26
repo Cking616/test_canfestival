@@ -28,23 +28,17 @@ int main()
     TestMaster_Data.post_emcy = TestMaster_post_emcy;
     TestMaster_Data.post_SlaveBootup=TestMaster_post_SlaveBootup;
     TestMaster_Data.post_SlaveStateChange = TestMaster_post_SlaveStateChange;
+    Modes2 = -2;
 
     setNodeId(&TestMaster_Data, nodeID);
     driver_start_tick();
     setState(&TestMaster_Data, Initialisation);     // Init the state
     delay_ms(500);
     setState(&TestMaster_Data, Pre_operational);
-    //masterRequestNodeState(&TestMaster_Data, 0x02);
-    //delay_ms(500);
-    //masterSendNMTstateChange(&TestMaster_Data, 0x02, NMT_Start_Node);
-    //delay_ms(500);
     masterSendNMTstateChange(&TestMaster_Data, 0x02, NMT_Enter_PreOperational);
     while(1)
     {
-        //masterRequestNodeState(&TestMaster_Data, 0x02);
         delay_ms(300);
-        //sendSDO (CO_Data* d, UNS8 whoami, UNS8 CliServNbr, UNS8 *pData);
-        //sendPDOevent (CO_Data* d);
     }
     return 1;
 }

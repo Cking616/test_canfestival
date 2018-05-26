@@ -10,6 +10,8 @@
 #include "task/blinky.h"
 #include "task/canfestival_thread.h"
 #include "utils/uartstdio.h"
+#include "canfestival.h"
+#include "TestMaster.h"
 
 
 int _testspeed[5] = {5, 20, 25, 15, 5};
@@ -29,7 +31,10 @@ inline void on_sys_period(void)
 
         _tick_second++;
 
-        UARTprintf("Tick Time!\n");
+        //UARTprintf("Tick Time!\n");
+
+        //int data = readNetworkDict (&TestMaster_Data, 2, 0x6041, 0x00, uint16, 0);
+        UARTprintf("S:0x%X, C:0x%X,P:%d!\n", Statusword2, Contolword2, Position2);
     }
     else
     {
