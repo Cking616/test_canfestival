@@ -14,4 +14,5 @@ inline void delay_ms(int ms);
 
 inline void delay_s(int s);
 
+inline void delay_us(int us);
 #endif /* BSP_DELAY_H_ */

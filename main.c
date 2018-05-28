@@ -28,17 +28,44 @@ int main()
     TestMaster_Data.post_emcy = TestMaster_post_emcy;
     TestMaster_Data.post_SlaveBootup=TestMaster_post_SlaveBootup;
     TestMaster_Data.post_SlaveStateChange = TestMaster_post_SlaveStateChange;
-    Modes2 = -2;
 
     setNodeId(&TestMaster_Data, nodeID);
     driver_start_tick();
     setState(&TestMaster_Data, Initialisation);     // Init the state
     delay_ms(500);
     setState(&TestMaster_Data, Pre_operational);
+
+    delay_s(2);
     masterSendNMTstateChange(&TestMaster_Data, 0x02, NMT_Enter_PreOperational);
+    delay_ms(300);
+    ConfigureSlaveNode(&TestMaster_Data, 0x02);
     while(1)
     {
-        delay_ms(300);
+        if(Statusword2 & 0x40)
+        {
+            Contolword2 = 0x6;
+        }
+        else if(Statusword2 & 0x20)
+        {
+            if(Statusword2 & 0x2)
+            {
+                Contolword2 = 0xF;
+            }
+            else
+            {
+                Contolword2 = 0x7;
+            }
+        }
+
+        if((Statusword2 & 0x67) == 0x27)
+        {
+            //Contolword2 |= 0x10;
+            tPosition2 = -10000;
+            Contolword2 |= 0x30;
+            delay_ms(10);
+            Contolword2 = 0x2F;
+        }
+        delay_ms(10);
     }
     return 1;
 }

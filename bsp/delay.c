@@ -9,6 +9,11 @@
 #include "delay.h"
 #include "driverlib/rom.h"
 
+inline void delay_us(int us)
+{
+       ROM_SysCtlDelay( us * 266 / 10); // assume 80MHz clock
+}
+
 inline void delay_ms(int ms)
 {
         volatile uint32_t K;

@@ -14,8 +14,10 @@ const indextable * TestMaster_scanIndexOD (UNS16 wIndex, UNS32 * errorCode, ODCa
 extern CO_Data TestMaster_Data;
 extern UNS16 Contolword2;		/* Mapped at index 0x2020, subindex 0x00*/
 extern UNS16 Statusword2;		/* Mapped at index 0x2021, subindex 0x00*/
-extern UNS32 Submode2;		/* Mapped at index 0x2032, subindex 0x00*/
-extern INTEGER8 Modes2;		/* Mapped at index 0x2060, subindex 0x00*/
+extern UNS32 SubMode2;		/* Mapped at index 0x2032, subindex 0x00*/
+extern INTEGER8 Mode2;		/* Mapped at index 0x2060, subindex 0x00*/
 extern INTEGER32 Position2;		/* Mapped at index 0x2064, subindex 0x00*/
+extern INTEGER32 tPosition2;		/* Mapped at index 0x207A, subindex 0x00*/
+extern UNS32 Speed2;		/* Mapped at index 0x2081, subindex 0x00*/
 
 #endif // TESTMASTER_H

@@ -23,9 +23,243 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "Master.h"
 #include "canfestival.h"
 #include "utils/uartstdio.h"
+#include "bsp/delay.h"
 
-//#define eprint(...) UARTprintf(...)
-//extern s_BOARD MasterBoard;
+
+UNS8 __is_sending = 0;
+
+static void CheckSDOAndContinue(CO_Data* d, UNS8 nodeId)
+{
+	UNS32 abortCode;
+	if (getWriteResultNetworkDict(d, nodeId, &abortCode) != SDO_FINISHED)
+		UARTprintf("Master : Failed in initializing slave %X, AbortCode :%X \n", nodeId, abortCode);
+
+	/* Finalise last SDO transfer with this node */
+	closeSDOtransfer(&TestMaster_Data, nodeId, SDO_CLIENT);
+
+	__is_sending = 0;
+}
+
+void CanOpen_Reset_TPDO(CO_Data* d, UNS8 nodeId)
+{
+	UNS8 data8 = 0x01;
+	int32_t data = 0;
+
+	data8 = 0x0;
+	writeNetworkDictCallBack(d, /*CO_Data* d*/
+		nodeId, /*UNS8 nodeId*/
+		0x1a00, /*UNS16 index*/
+		0x00, /*UNS16 index*/
+		1, /*UNS8 count*/
+		0, /*UNS8 dataType*/
+		&data8,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+
+	data = (0x180 + 0x2) + 0x80000000;
+	writeNetworkDictCallBack(d, /*CO_Data* d*/
+		nodeId, /*UNS8 nodeId*/
+		0x1800, /*UNS16 index*/
+		0x01, /*UNS16 index*/
+		4, /*UNS8 count*/
+		uint32, /*UNS8 dataType*/
+		&data,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+
+	delay_ms(5);
+	data = 0x60410010;
+	writeNetworkDictCallBack(d, /*CO_Data* d*/
+		nodeId, /*UNS8 nodeId*/
+		0x1a00, /*UNS16 index*/
+		0x01, /*UNS16 index*/
+		4, /*UNS8 count*/
+		uint32, /*UNS8 dataType*/
+		&data,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+
+	data = 0x60640020;
+	writeNetworkDictCallBack(d, /*CO_Data* d*/
+		nodeId, /*UNS8 nodeId*/
+		0x1a00, /*UNS16 index*/
+		0x02, /*UNS16 index*/
+		4, /*UNS8 count*/
+		uint32, /*UNS8 dataType*/
+		&data,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+	delay_ms(5);
+	data8 = 0x2;
+	writeNetworkDictCallBack(d, /*CO_Data* d*/
+		nodeId, /*UNS8 nodeId*/
+		0x1a00, /*UNS16 index*/
+		0x00, /*UNS16 index*/
+		1, /*UNS8 count*/
+		0, /*UNS8 dataType*/
+		&data8,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+
+	delay_ms(10);
+	data8 = 0x1;
+	writeNetworkDictCallBack(d, /*CO_Data* d*/
+		nodeId, /*UNS8 nodeId*/
+		0x1800, /*UNS16 index*/
+		0x02, /*UNS8 subindex*/
+		1, /*UNS8 count*/
+		0, /*UNS8 dataType*/
+		&data8,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+	data = 0x182;
+	writeNetworkDictCallBack(d, /*CO_Data* d*/
+		nodeId, /*UNS8 nodeId*/
+		0x1800, /*UNS16 index*/
+		0x01, /*UNS16 index*/
+		4, /*UNS8 count*/
+		uint32, /*UNS8 dataType*/
+		&data,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+}
+
+void CanOpen_Change_Param(CO_Data* d, UNS8 nodeId)
+{
+	UNS8 data8 = 0x01;
+	int32_t data = 0;
+
+	data = 3600;
+	writeNetworkDictCallBack(&TestMaster_Data, /*CO_Data* d*/
+		2, /*UNS8 nodeId*/
+		0x6081, /*UNS16 index*/
+		0x00, /*UNS16 index*/
+		4, /*UNS8 count*/
+		uint32, /*UNS8 dataType*/
+		&data,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+    data = 800000;
+    writeNetworkDictCallBack(&TestMaster_Data, /*CO_Data* d*/
+        2, /*UNS8 nodeId*/
+        0x607a, /*UNS16 index*/
+        0x00, /*UNS16 index*/
+        4, /*UNS8 count*/
+        int32, /*UNS8 dataType*/
+        &data,/*void *data*/
+        CheckSDOAndContinue, /*SDOCallback_t Callback*/
+        0); /* use block mode */
+    __is_sending = 1;
+    while (__is_sending) { delay_us(50); }
+
+	data = 1;
+	writeNetworkDictCallBack(&TestMaster_Data, /*CO_Data* d*/
+		2, /*UNS8 nodeId*/
+		0x3202, /*UNS16 index*/
+		0x00, /*UNS16 index*/
+		4, /*UNS8 count*/
+		uint32, /*UNS8 dataType*/
+		&data,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+	data8 = 1;
+	writeNetworkDictCallBack(&TestMaster_Data, /*CO_Data* d*/
+		2, /*UNS8 nodeId*/
+		0x6060, /*UNS16 index*/
+		0x00, /*UNS16 index*/
+		1, /*UNS8 count*/
+		0, /*UNS8 dataType*/
+		&data,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+}
+
+void CanOpen_Reset_RPDO(CO_Data* d, UNS8 nodeId)
+{
+	int32_t data;
+	UNS8 data8;
+
+	data = 0x0202;
+	writeNetworkDictCallBack(d, /*CO_Data* d*/
+		nodeId, /*UNS8 nodeId*/
+		0x1400, /*UNS16 index*/
+		0x01, /*UNS16 index*/
+		4, /*UNS8 count*/
+		uint32, /*UNS8 dataType*/
+		&data,/*void *data*/
+		CheckSDOAndContinue, /*SDOCallback_t Callback*/
+		0); /* use block mode */
+	__is_sending = 1;
+	while (__is_sending) { delay_us(50); }
+
+    data8 = 0xFF;
+    writeNetworkDictCallBack(d, /*CO_Data* d*/
+        nodeId, /*UNS8 nodeId*/
+        0x1400, /*UNS16 index*/
+        0x02, /*UNS8 subindex*/
+        1, /*UNS8 count*/
+        0, /*UNS8 dataType*/
+        &data8,/*void *data*/
+        CheckSDOAndContinue, /*SDOCallback_t Callback*/
+        0); /* use block mode */
+    __is_sending = 1;
+    while (__is_sending) { delay_us(50); }
+
+    data = 0x0302;
+    writeNetworkDictCallBack(d, /*CO_Data* d*/
+        nodeId, /*UNS8 nodeId*/
+        0x1401, /*UNS16 index*/
+        0x01, /*UNS16 index*/
+        4, /*UNS8 count*/
+        uint32, /*UNS8 dataType*/
+        &data,/*void *data*/
+        CheckSDOAndContinue, /*SDOCallback_t Callback*/
+        0); /* use block mode */
+    __is_sending = 1;
+    while (__is_sending) { delay_us(50); }
+
+    data8 = 0xFF;
+    writeNetworkDictCallBack(d, /*CO_Data* d*/
+        nodeId, /*UNS8 nodeId*/
+        0x1401, /*UNS16 index*/
+        0x02, /*UNS8 subindex*/
+        1, /*UNS8 count*/
+        0, /*UNS8 dataType*/
+        &data8,/*void *data*/
+        CheckSDOAndContinue, /*SDOCallback_t Callback*/
+        0); /* use block mode */
+    __is_sending = 1;
+    while (__is_sending) { delay_us(50); }
+}
+
 /*****************************************************************************/
 void TestMaster_heartbeatError(CO_Data* d, UNS8 heartbeatID)
 {
@@ -49,22 +283,6 @@ void TestMaster_initialisation(CO_Data* d)
 // Step counts number of times ConfigureSlaveNode is called
 static int init_step = 0;
 
-/*Froward declaration*/
-static void ConfigureSlaveNode(CO_Data* d, UNS8 nodeId);
-
-/**/
-static void CheckSDOAndContinue(CO_Data* d, UNS8 nodeId)
-{
-	UNS32 abortCode;	
-	if(getWriteResultNetworkDict (d, nodeId, &abortCode) != SDO_FINISHED)
-		UARTprintf("Master : Failed in initializing slave %X, step %d, AbortCode :%X \n", nodeId, init_step, abortCode);
-
-	/* Finalise last SDO transfer with this node */
-	closeSDOtransfer(&TestMaster_Data, nodeId, SDO_CLIENT);
-
-	ConfigureSlaveNode(d, nodeId);
-}
-
 /********************************************************
  * ConfigureSlaveNode is responsible to
  *  - setup slave TPDO 1 transmit type
@@ -81,75 +299,20 @@ static void CheckSDOAndContinue(CO_Data* d, UNS8 nodeId)
  * finished.
  ********************************************************/
  
-static void ConfigureSlaveNode(CO_Data* d, UNS8 nodeId)
+void ConfigureSlaveNode(CO_Data* d, UNS8 nodeId)
 {
 	/* Master configure heartbeat producer time at 1000 ms 
 	 * for slave node-id 0x02 by DCF concise */
 	 
-	UNS8 Transmission_Type = 0x01;
-	int32_t data = 0;
-	UNS8 res;
 	UARTprintf("Master : ConfigureSlaveNode %X\n", nodeId);
-
-	switch(++init_step){
-        case 1: /*Second step*/
-             data = 0x180 + 0x2;
-             writeNetworkDictCallBack (d, /*CO_Data* d*/
-                     nodeId, /*UNS8 nodeId*/
-                     0x1800, /*UNS16 index*/
-                     0x01, /*UNS16 index*/
-                     4, /*UNS8 count*/
-                     uint32, /*UNS8 dataType*/
-                     &data,/*void *data*/
-                     CheckSDOAndContinue, /*SDOCallback_t Callback*/
-                     0); /* use block mode */
-                     break;
-        case 2: /*First step : setup Slave's TPDO 1 to be transmitted on SYNC*/
-             res = writeNetworkDictCallBack (d, /*CO_Data* d*/
-                     nodeId, /*UNS8 nodeId*/
-                     0x1800, /*UNS16 index*/
-                     0x02, /*UNS8 subindex*/
-                     1, /*UNS8 count*/
-                     0, /*UNS8 dataType*/
-                     &Transmission_Type,/*void *data*/
-                     CheckSDOAndContinue, /*SDOCallback_t Callback*/
-                     0); /* use block mode */
-                     break;
-         case 3: /*Second step*/
-             data = 0x200 + 0x2;
-             writeNetworkDictCallBack (d, /*CO_Data* d*/
-                     nodeId, /*UNS8 nodeId*/
-                     0x1400, /*UNS16 index*/
-                     0x01, /*UNS16 index*/
-                     4, /*UNS8 count*/
-                     uint32, /*UNS8 dataType*/
-                     &data,/*void *data*/
-                     CheckSDOAndContinue, /*SDOCallback_t Callback*/
-                     0); /* use block mode */
-                     break;
-         case 4: /*First step : setup Slave's TPDO 1 to be transmitted on SYNC*/
-             Transmission_Type = 0xFF;
-              res = writeNetworkDictCallBack (d, /*CO_Data* d*/
-                      nodeId, /*UNS8 nodeId*/
-                      0x1400, /*UNS16 index*/
-                      0x02, /*UNS8 subindex*/
-                      1, /*UNS8 count*/
-                      0, /*UNS8 dataType*/
-                      &Transmission_Type,/*void *data*/
-                      CheckSDOAndContinue, /*SDOCallback_t Callback*/
-                      0); /* use block mode */
-                      break;
-		default :
-		
-		/****************************** START *******************************/
-		
-			/* Put the master in operational mode */
-			setState(d, Operational);
-			Contolword2 = 0x86;
-			/* Ask slave node to go in operational mode */
-			masterSendNMTstateChange (d, nodeId, NMT_Start_Node);
-			
-	}
+	CanOpen_Reset_RPDO(d, nodeId);
+	CanOpen_Reset_TPDO(d, nodeId);
+	CanOpen_Change_Param(d, nodeId);
+	/* Put the master in operational mode */
+	setState(d, Operational);
+	Contolword2 = 0x86;
+	/* Ask slave node to go in operational mode */
+	masterSendNMTstateChange (d, nodeId, NMT_Start_Node);
 }
 
 
@@ -196,39 +359,11 @@ void TestMaster_post_TPDO(CO_Data* d)
 {
     static int MasterSyncCount = 0;
 
-	if(MasterSyncCount % 17 == 0){
-		sendPDOrequest(&TestMaster_Data, 0x1400 );
-		sendPDOevent(&TestMaster_Data);
-        if(Statusword2 & 0x40)
-        {
-            Contolword2 = 0x6;
-        }
-        else if(Statusword2 & 0x20)
-        {
-            if(Statusword2 & 0x2)
-            {
-                Contolword2 = 0xF;
-            }
-            else
-            {
-                Contolword2 = 0x7;
-            }
-        }
+	if(MasterSyncCount % 2 == 0){
+	    //sendOnePDOevent(&TestMaster_Data, 0x0);
 
-        if((Statusword2 & 0x67) == 0x27)
-        {
-            int data = 100000;
-            writeNetworkDictCallBack (&TestMaster_Data, /*CO_Data* d*/
-                        2, /*UNS8 nodeId*/
-                        0x607a, /*UNS16 index*/
-                        0x00, /*UNS16 index*/
-                        4, /*UNS8 count*/
-                        int32, /*UNS8 dataType*/
-                        &data,/*void *data*/
-                        CheckSDO, /*SDOCallback_t Callback*/
-                        0); /* use block mode */
-            Contolword2 |= 0x10;
-        }
+	    sendPDOevent(&TestMaster_Data);
+        sendPDOrequest(&TestMaster_Data, 0x1400 );
 	}
 	MasterSyncCount++;
 }
@@ -236,24 +371,9 @@ void TestMaster_post_TPDO(CO_Data* d)
 void TestMaster_post_SlaveBootup(CO_Data* d, UNS8 nodeid)
 {
 	UARTprintf("TestMaster_post_SlaveBootup %x\n", nodeid);
-	
-	ConfigureSlaveNode(d, nodeid);
 }
 
 void TestMaster_post_SlaveStateChange(CO_Data* d, UNS8 nodeId, e_nodeState newNodeState)
 {
     UARTprintf("TestMaster_post_SlaveStateChange %x\n", nodeId);
-
-    switch(newNodeState)
-    {
-        case Pre_operational:
-        {
-            ConfigureSlaveNode(d, nodeId);
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
 }
